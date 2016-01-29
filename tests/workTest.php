@@ -5,13 +5,6 @@ use TitashGallery\Work\Arc;
 
 class workTest extends PHPUnit_Framework_TestCase
 {
-    protected $work;
-
-    public function setUp()
-    {
-        $this->work = new Work();
-    }
-
     public function fieldNames()
     {
         return array(
@@ -36,13 +29,31 @@ class workTest extends PHPUnit_Framework_TestCase
     /**
      * @dataProvider fieldNames
      */
-    public function testFieldsName($fields)
+    public function testFields($fields)
     {
         $this->assertClassHasAttribute($fields, Work::class);
     }
 
     public function testFieldArcIsArc()
     {
-        $this->assertInstanceOf(Arc::class, $this->work->arc);
+        $work = new Work();
+        $this->assertInstanceOf(Arc::class, $work->arc);
+    }
+
+    public function testFieldTitle()
+    {
+        $emptyTitle = new Work();
+        $this->assertNull($emptyTitle->title);
+
+        $singleTitleWork = new Work();
+        $singleTitleWork->title = 'English title';
+        $this->assertInternalType('string', $singleTitleWork->title);
+
+        $mixedTitleWork = new Work();
+        $mixedTitleWork->title = array(
+            'en' => 'English title',
+            'fr' => 'Titre français',
+        );
+        $this->assertInternalType('array', $mixedTitleWork->title);
     }
 }
