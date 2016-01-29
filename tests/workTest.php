@@ -1,14 +1,15 @@
 <?php
 
 use TitashGallery\Work;
+use TitashGallery\Work\Arc;
 
-class WorkTest extends PHPUnit_Framework_TestCase
+class workTest extends PHPUnit_Framework_TestCase
 {
     protected $work;
 
     public function setUp()
     {
-        $this->work = new Work;
+        $this->work = new Work();
     }
 
     public function fieldNames()
@@ -35,8 +36,13 @@ class WorkTest extends PHPUnit_Framework_TestCase
     /**
      * @dataProvider fieldNames
      */
-    public function testClassHasField($field)
+    public function testFieldsName($fields)
     {
-        $this->assertClassHasAttribute($field, get_class($this->work));
+        $this->assertClassHasAttribute($fields, Work::class);
+    }
+
+    public function testFieldArcIsArc()
+    {
+        $this->assertInstanceOf(Arc::class, $this->work->arc);
     }
 }

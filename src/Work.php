@@ -2,6 +2,8 @@
 
 namespace TitashGallery;
 
+use TitashGallery\Work\Arc;
+
 /*
  * A “work” may be a drawing, or photo, or video…
  */
@@ -59,4 +61,10 @@ class Work
 
     /// The work’s copyrights.
     public $copyright;
+
+
+    function __construct()
+    {
+        $this->arc = new Arc;
+    }
 }
