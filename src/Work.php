@@ -1,5 +1,7 @@
 <?php
 
+namespace TitashGallery;
+
 /*
  * A “work” may be a drawing, or photo, or video…
  */
