@@ -1,6 +1,6 @@
 <?php
 
-use TitashGallery\Work;
+use TitashGallery\Work\Work;
 use TitashGallery\Work\Arc;
 
 class workTest extends PHPUnit_Framework_TestCase

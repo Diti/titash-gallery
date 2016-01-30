@@ -1,6 +1,6 @@
 <?php
 
-namespace TitashGallery;
+namespace TitashGallery\Work;
 
 use TitashGallery\Work\Arc;
 
@@ -63,8 +63,8 @@ class Work
     public $copyright;
 
 
-    function __construct()
+    public function __construct()
     {
-        $this->arc = new Arc;
+        $this->arc = new Arc();
     }
 }
