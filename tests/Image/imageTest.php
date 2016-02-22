@@ -6,8 +6,7 @@ class imageTest extends PHPUnit_Framework_TestCase
 {
 
     /**
-    * @expectedException     Exception
-    * @expectedExceptionCode 404
+    * @expectedException     DomainException
     */
     public function testFileNotFound()
     {
@@ -15,8 +14,15 @@ class imageTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-    * @expectedException     Exception
-    * @expectedExceptionCode 415
+    * @expectedException     InvalidArgumentException
+    */
+    public function testNotFilename()
+    {
+        $img = new Image(42);
+    }
+
+    /**
+    * @expectedException     DomainException
     */
     public function testFiletypeNotSupported()
     {

@@ -4,12 +4,9 @@ namespace TitashGallery;
 
 class Image
 {
-    const ERR_FILE_NOT_FOUND = 404;
-    const ERR_FILETYPE_UNSUPPORTED = 415;
-    const ERR_FEATURE_UNAVAILABLE = 503;
 
     // Path to the file
-    protected $filename;
+    protected $imageFile;
 
     // Resource of an loaded image (typically by GD)
     protected $res;
@@ -19,31 +16,39 @@ class Image
         self::loadFromFile($file);
     }
 
+    /**
+    * Load a file into resource $res.
+    */
     protected function loadFromFile($filename)
     {
-        if (!file_exists($filename)) {
-            throw new \Exception("File $filename not found.", self::ERR_FILE_NOT_FOUND);
+        if (!is_string($filename)) {
+            throw new \InvalidArgumentException;
         }
 
-        $this->filename = $filename;
+        if (!file_exists($filename)) {
+            throw new \DomainException("File $filename not found.");
+        }
+
+        $this->imageFile = $filename;
 
         if (!extension_loaded('gd')) {
-            throw new \Exception('The PHP GD extension is missing.', self::ERR_FEATURE_UNAVAILABLE);
+            throw new \LogicException('PHP GD extension is missing.');
         }
 
-        switch (pathinfo($this->filename, PATHINFO_EXTENSION)) {
+        $ext = pathinfo($this->imageFile, PATHINFO_EXTENSION);
+        switch ($ext) {
             case 'gif':
-                $this->res = @imagecreatefromgif($this->filename);
+                $this->res = @imagecreatefromgif($this->imageFile);
                 break;
             case 'jpg':
             case 'jpeg':
-                $this->res = @imagecreatefromjpeg($this->filename);
+                $this->res = @imagecreatefromjpeg($this->imageFile);
                 break;
             case 'png':
-                $this->res = @imagecreatefrompng($this->filename);
+                $this->res = @imagecreatefrompng($this->imageFile);
                 break;
             default:
-                throw new \Exception('File ' . pathinfo($this->filename, PATHINFO_BASENAME) . ' has an unsupported extension.', self::ERR_FILETYPE_UNSUPPORTED);
+                throw new \DomainException("File extension is unsupported.");
                 break;
         }
 
