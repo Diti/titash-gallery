@@ -16,6 +16,8 @@ class Image
         self::loadFromFile($file);
     }
 
+    public function hasTitle($image)
+
     /**
     * Load a file into resource $res.
     */
@@ -51,6 +53,12 @@ class Image
                 throw new \DomainException("File extension is unsupported.");
                 break;
         }
+    }
 
+    public function __destruct()
+    {
+        if (!empty($this->res) && get_resource_type($this->res) == 'gd') {
+            imagedestroy($this->res);
+        }
     }
 }
