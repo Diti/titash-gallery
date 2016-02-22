@@ -28,4 +28,12 @@ class imageTest extends PHPUnit_Framework_TestCase
     {
         $img = new Image(__DIR__ . '/text-plain.txt');
     }
+
+    public function testMetadataJPG()
+    {
+        $img = new Image(__DIR__ . '/blank.jpg');
+        $data = $img->getMetadata();
+
+        $this->assertEquals('Wikimedia Commons', $data['source']);
+    }
 }
