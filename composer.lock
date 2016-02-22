@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2ae81814884673cf6507f1861246cb79",
-    "content-hash": "a06da8b0b7c1fc91d369440516b7163c",
+    "hash": "1c6813cf2c5bd868606e7f28c5fdc027",
+    "content-hash": "a8d6e1b08d9b72db372d773177604aef",
     "packages": [],
     "packages-dev": [
         {
@@ -1052,7 +1052,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": "~5.6.15"
+        "php": "~5.6"
     },
     "platform-dev": []
 }
