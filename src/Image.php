@@ -91,21 +91,21 @@ class Image
 
         $this->imageFile = $filename;
 
-        if (!extension_loaded('gd')) {
-            throw new \LogicException('PHP GD extension is missing.');
-        }
+        //if (!extension_loaded('gd')) {
+        //    throw new \LogicException('PHP GD extension is missing.');
+        //}
 
         $ext = pathinfo($this->imageFile, PATHINFO_EXTENSION);
         switch ($ext) {
             case 'gif':
-                $this->res = @imagecreatefromgif($this->imageFile);
+                //$this->res = @imagecreatefromgif($this->imageFile);
                 break;
             case 'jpg':
             case 'jpeg':
-                $this->res = @imagecreatefromjpeg($this->imageFile);
+                //$this->res = @imagecreatefromjpeg($this->imageFile);
                 break;
             case 'png':
-                $this->res = @imagecreatefrompng($this->imageFile);
+                //$this->res = @imagecreatefrompng($this->imageFile);
                 break;
             default:
                 throw new \DomainException("File extension is unsupported.");
