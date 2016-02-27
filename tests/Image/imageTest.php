@@ -20,18 +20,9 @@ class imageTest extends PHPUnit_Framework_TestCase
         $img = new Image(42);
     }
 
-    /**
-     * @expectedException     UnderflowException
-     */
-    public function testFiletypeNotSupported()
-    {
-        $img = new Image(__DIR__.'/text-plain.txt');
-        $data = $img->getMetadata();
-    }
-
     public function testMetadataJPEG()
     {
-        $img = new Image(__DIR__.'/blank.jpg');
+        $img = new Image(__DIR__ . '/blank.jpg');
         $data = $img->getMetadata();
 
         $this->assertEquals('Wikimedia Commons', $data['source']);
@@ -39,7 +30,7 @@ class imageTest extends PHPUnit_Framework_TestCase
 
     public function testMetadataPNG()
     {
-        $img = new Image(__DIR__.'/ffffff7f.png');
+        $img = new Image(__DIR__ . '/ffffff7f.png');
 
         try {
             $data = $img->getMetadata();
@@ -48,5 +39,15 @@ class imageTest extends PHPUnit_Framework_TestCase
         }
 
         $this->assertEquals('Wikimedia Commons', $data['source']);
+    }
+
+    public function testMetadataTXT()
+    {
+        $img = new Image(__DIR__ . '/text-plain.txt');
+        if (is_executable('/usr/bin/exiftool') || is_executable('/usr/local/bin/exiftool')) {
+            // ExifTool can read very basic metadata even from plaintext files
+        } else {
+            $this->setExpectedException(\UnderflowException::class);
+        }
     }
 }
