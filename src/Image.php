@@ -32,7 +32,7 @@ class Image
                 $exif = $reader->read($this->imageFile);
                 $this->metadata = $exif->getData();
             } catch (\RuntimeException $e) {
-                // Empty `$this->metadata` if EXIF info cannot be read
+                throw new \UnderflowException('No metadata read.'); // Force the dev to handle empty metadata cases
             }
         }
 
