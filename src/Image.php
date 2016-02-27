@@ -46,7 +46,7 @@ class Image
         return $this->metadata;
     }
 
-    private function setMetadataReader($reader)
+    public function setMetadataReader($reader)
     {
         $refl = new \ReflectionClass(\PHPExif\Reader\Reader::class);
         if (!in_array($reader, $refl->getConstants())) {
@@ -56,7 +56,7 @@ class Image
         $this->metadataReader = \PHPExif\Reader\Reader::factory($reader);
     }
 
-    private function getMetadataReader()
+    public function getMetadataReader()
     {
         if (empty($this->metadataReader)) {
             throw new \LogicException('No metadata reader has been set with “setMetadataReader()”.');
