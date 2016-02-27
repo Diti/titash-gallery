@@ -51,14 +51,14 @@ class imageTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('Wikimedia Commons', $data['source']);
     }
 
-    public function testMetadataPNG()
+    public function testMetadataPNGCaughtException()
     {
         $img = new Image(__DIR__ . '/ffffff7f.png');
 
         try {
             $data = $img->getMetadata();
         } catch (\UnderflowException $e) {
-            $this->markTestIncomplete('Reading of PNG metadata not yet implemented?');
+            $this->markTestIncomplete('Reading of PNG metadata not yet implemented when `exiftool` is not present.');
         }
 
         $this->assertEquals('Wikimedia Commons', $data['source']);
@@ -67,10 +67,13 @@ class imageTest extends PHPUnit_Framework_TestCase
     public function testMetadataTXT()
     {
         $img = new Image(__DIR__ . '/text-plain.txt');
+
         if (is_executable('/usr/bin/exiftool') || is_executable('/usr/local/bin/exiftool')) {
+            $data = $img->getMetadata();
             // ExifTool can read very basic metadata even from plaintext files
         } else {
             $this->setExpectedException(\UnderflowException::class);
+            $data = $img->getMetadata();
         }
     }
 }
