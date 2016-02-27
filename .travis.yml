@@ -2,8 +2,9 @@ language: php
 php: '5.6'
 
 before_script:
-  - composer self-update
   - composer install
+
+script: vendor/phpunit/phpunit/phpunit
 
 addons:
   hosts: titash.net
