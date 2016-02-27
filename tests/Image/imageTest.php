@@ -4,6 +4,13 @@ use TitashGallery\Image;
 
 class imageTest extends PHPUnit_Framework_TestCase
 {
+    private $blankJPEG;
+
+    protected function setUp()
+    {
+        $this->blankJPEG = new Image(__DIR__ . '/blank.jpg');
+    }
+
     /**
      * @expectedException   DomainException
      */
@@ -26,8 +33,7 @@ class imageTest extends PHPUnit_Framework_TestCase
      */
     public function testInvalidMetadataReader()
     {
-        $img = new Image(__DIR__ . '/blank.jpg');
-        $img->setMetadataReader('Invalid');
+        $this->blankJPEG->setMetadataReader('Invalid');
     }
 
     /**
@@ -35,14 +41,12 @@ class imageTest extends PHPUnit_Framework_TestCase
     */
     public function testMissingMetadataReader()
     {
-        $img = new Image(__DIR__ . '/blank.jpg');
-        $img->getMetadataReader();
+        $this->blankJPEG->getMetadataReader();
     }
 
     public function testMetadataJPEG()
     {
-        $img = new Image(__DIR__ . '/blank.jpg');
-        $data = $img->getMetadata();
+        $data = $this->blankJPEG->getMetadata();
 
         $this->assertEquals('Wikimedia Commons', $data['source']);
     }
