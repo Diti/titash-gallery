@@ -4,9 +4,54 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "13a5b8bb3ce0d251b8f5de90747e192b",
-    "content-hash": "05db00765b08dea72b03eab611657a2f",
+    "hash": "c270fd20431bec57992df88f7265f014",
+    "content-hash": "9276922ed6bca109acdd031c44b87eaa",
     "packages": [
+        {
+            "name": "adlawson/timezone",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/adlawson/php-timezone.git",
+                "reference": "6b0a7300e0ce5670b2f472e934c0f0c714ab09be"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/adlawson/php-timezone/zipball/6b0a7300e0ce5670b2f472e934c0f0c714ab09be",
+                "reference": "6b0a7300e0ce5670b2f472e934c0f0c714ab09be",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "./lib/timezone.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andrew Lawson",
+                    "homepage": "http://adlawson.com"
+                }
+            ],
+            "description": "UTC default timezone",
+            "homepage": "http://github.com/adlawson/timezone",
+            "keywords": [
+                "date",
+                "datetime",
+                "default",
+                "time",
+                "timezone",
+                "utc"
+            ],
+            "time": "2013-08-16 12:43:22"
+        },
         {
             "name": "miljar/php-exif",
             "version": "v0.5.1",
